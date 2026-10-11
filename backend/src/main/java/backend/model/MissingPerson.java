@@ -17,7 +17,8 @@ public class MissingPerson {
     private int age;
     private String gender;
     private String lastSeenLocation;
-    private LocalDateTime lastSeenDate;
+    private String lastSeenDate;
+    private String clothing;
     private String contactNumber;
     private String description;
     private String photoUrl;

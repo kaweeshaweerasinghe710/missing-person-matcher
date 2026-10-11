@@ -32,4 +32,10 @@ public class MissingPersonService {
     public List<MissingPerson> getActiveCases() {
         return repository.findByStatus("MISSING");
     }
+
+    public MissingPerson markAsFound(Long id) {
+        MissingPerson person = getById(id);
+        person.setStatus("FOUND");
+        return repository.save(person);
+    }
 }
