@@ -21,3 +21,6 @@ export const getAllFoundPersons = () =>
 
 export const getUnmatchedPersons = () =>
   API.get('/found/unmatched');
+
+export const markAsFound = (id) =>
+  API.put(`/missing/${id}/found`);
