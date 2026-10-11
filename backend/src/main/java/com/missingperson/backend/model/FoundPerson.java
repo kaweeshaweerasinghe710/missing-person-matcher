@@ -14,8 +14,12 @@ public class FoundPerson {
     private Long id;
 
     private String foundLocation;
-    private LocalDateTime foundDate;
+    private String foundDate;
+    private String gpsCoordinates;
     private String reporterContact;
+    private String notes;
+
+    @Column(columnDefinition = "TEXT")
     private String photoUrl;
     private String status; 
 
