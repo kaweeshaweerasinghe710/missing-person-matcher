@@ -21,6 +21,7 @@ public class MissingPerson {
     private String clothing;
     private String contactNumber;
     private String description;
+    @Column(columnDefinition = "TEXT")
     private String photoUrl;
     private String status; 
 
