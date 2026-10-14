@@ -1,8 +1,10 @@
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getAllMissingPersons, getAllFoundPersons } from '../services/api';
 
 function Home() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [stats, setStats] = useState({ missing: 0, found: 0 });
 
@@ -20,40 +22,51 @@ function Home() {
   return (
     <>
       <div className="hero">
-        <h1>MISSING PERSON MATCHER</h1>
-        <p>AI-Powered Missing Person Identification</p>
+        <h1>{t('appTitle')}</h1>
+        <p>{t('heroSubtitle')}</p>
       </div>
       <div className="cards-grid">
         <div className="card">
-          <div className="card-header red">REPORT MISSING PERSON</div>
+          <div className="card-header red">{t('reportMissing')}</div>
           <div className="card-body">
             <div className="card-icon">👤</div>
-            <p>Submit a missing person report with details and photos</p>
-            <button className="card-btn red"
-              onClick={() => navigate('/report-missing')}>
-              REPORT NOW
+            <p>{t('reportMissingDesc')}</p>
+            <button
+              type="button"
+              className="card-btn red"
+              onClick={() => navigate('/report-missing')}
+            >
+              {t('reportNow')}
             </button>
           </div>
         </div>
 
         <div className="card">
-          <div className="card-header green">REPORT FOUND PERSON</div>
+          <div className="card-header green">{t('reportFound')}</div>
           <div className="card-body">
-            <p>Submit details of a person found or located</p>
-            <button className="card-btn green"
-              onClick={() => navigate('/report-found')}>
-              REPORT NOW
+            <div className="card-icon">👁️</div>
+            <p>{t('reportFoundDesc')}</p>
+            <button
+              type="button"
+              className="card-btn green"
+              onClick={() => navigate('/report-found')}
+            >
+              {t('reportNow')}
             </button>
           </div>
         </div>
 
         <div className="card">
-          <div className="card-header blue">VIEW CASES</div>
+          <div className="card-header blue">{t('missingPersons')}</div>
           <div className="card-body">
-            <p>Browse, search, and manage all missing and found person cases</p>
-            <button className="card-btn blue"
-              onClick={() => navigate('/cases')}>
-              VIEW CASES
+            <div className="card-icon">📋</div>
+            <p>{t('viewCasesDesc')}</p>
+            <button
+              type="button"
+              className="card-btn blue"
+              onClick={() => navigate('/cases')}
+            >
+              {t('viewCasesBtn')}
             </button>
           </div>
         </div>
@@ -61,25 +74,25 @@ function Home() {
       <div className="stats-bar">
         <div className="stat-item">
           <div>
-            <div className="stat-label">Current Cases</div>
+            <div className="stat-label">{t('currentCases')}</div>
             <div className="stat-value">{stats.missing}</div>
           </div>
         </div>
         <div className="stat-item">
           <div>
-            <div className="stat-label">Persons Located</div>
+            <div className="stat-label">{t('personsLocated')}</div>
             <div className="stat-value">{stats.found}</div>
           </div>
         </div>
         <div className="stat-item">
           <div>
-            <div className="stat-label">Total Reports</div>
+            <div className="stat-label">{t('totalReports')}</div>
             <div className="stat-value">{stats.missing + stats.found}</div>
           </div>
         </div>
         <div className="stat-item">
           <div>
-            <div className="stat-label">AI Matches</div>
+            <div className="stat-label">{t('aiMatches')}</div>
             <div className="stat-value">0</div>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { AI_PROMPT_PRESETS } from '../../services/aiService';
 
 function AiVariationPicker({
@@ -12,13 +13,16 @@ function AiVariationPicker({
   selectedImageIndex,
   onSelectImage,
 }) {
+  const { t } = useTranslation();
+
   return (
     <div className="ai-variations-box">
       <div className="ai-variations-header">
-        <strong>Generate Appearance Variations using AI (Optional)</strong>
+        <span style={{ fontSize: '16px' }}>✨</span>
+        <strong>{t('aiSectionTitle')}</strong>
       </div>
       <p className="ai-variations-subtitle">
-        Simulate how this person might look now (e.g., aged, beard, glasses, changed hair).
+        {t('aiSectionSubtitle')}
       </p>
 
       <div className="ai-presets-container">
@@ -39,7 +43,7 @@ function AiVariationPicker({
           type="text"
           value={prompt}
           onChange={(e) => onPromptChange(e.target.value)}
-          placeholder="e.g. Aged 4 years, has grown a beard, wears glasses"
+          placeholder={t('aiPromptPlaceholder')}
           className="ai-prompt-input"
         />
         <button
@@ -48,14 +52,14 @@ function AiVariationPicker({
           disabled={isGenerating}
           className="btn-generate-ai"
         >
-          {isGenerating ? 'Generating...' : ' Generate 5 Variations'}
+          {isGenerating ? t('generatingBtn') : t('generateBtn')}
         </button>
       </div>
 
       {(variations.length > 0 || uploadedOriginal) && (
         <div style={{ marginTop: '16px' }}>
           <div className="variations-strip-hint">
-            Click any image below to select it as the report's main photo:
+            {t('clickToSelectPhoto')}
           </div>
 
           <div className="variations-thumbnails-grid">
@@ -66,7 +70,7 @@ function AiVariationPicker({
               >
                 <img src={uploadedOriginal} alt="Original" className="thumb-img" />
                 <div className="thumb-label">
-                  {selectedImageIndex === 0 ? '✓ Original' : 'Original'}
+                  {selectedImageIndex === 0 ? `✓ ${t('originalPhoto')}` : t('originalPhoto')}
                 </div>
               </div>
             )}

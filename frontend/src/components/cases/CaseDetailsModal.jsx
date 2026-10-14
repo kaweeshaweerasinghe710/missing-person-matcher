@@ -1,20 +1,22 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { formatDate } from '../../utils/fileHelpers';
 
 function CaseDetailsModal({ person, onClose, onMarkFound, onPrintPoster }) {
+  const { t } = useTranslation();
   if (!person) return null;
 
   const isFound = person.status === 'FOUND';
 
   const detailsList = [
-    { label: 'Age', value: `${person.age} years` },
-    { label: 'Gender', value: person.gender },
-    { label: 'Last Seen Date', value: person.lastSeenDate },
-    { label: 'Last Seen Location', value: person.lastSeenLocation },
-    { label: 'Clothing / Dress', value: person.clothing },
-    { label: 'Contact', value: person.contactNumber },
-    { label: 'Description', value: person.description },
-    { label: 'Reported Date', value: formatDate(person.createdAt) },
+    { label: t('age'), value: `${person.age} ${t('ageYears')}` },
+    { label: t('gender'), value: person.gender },
+    { label: t('lastSeenDate'), value: person.lastSeenDate },
+    { label: t('lastSeenLocation'), value: person.lastSeenLocation },
+    { label: t('clothing'), value: person.clothing },
+    { label: t('contact'), value: person.contactNumber },
+    { label: t('description'), value: person.description },
+    { label: t('reportedDate'), value: formatDate(person.createdAt) },
   ];
 
   return (
@@ -63,7 +65,7 @@ function CaseDetailsModal({ person, onClose, onMarkFound, onPrintPoster }) {
                 fontWeight: '700',
               }}
             >
-              📄 Print Poster
+              {t('printPosterBtn')}
             </button>
           )}
 
@@ -74,7 +76,7 @@ function CaseDetailsModal({ person, onClose, onMarkFound, onPrintPoster }) {
               className="modal-action-btn-found"
               style={{ marginTop: 0, flex: 1 }}
             >
-               Mark Found
+              {t('markFoundModalBtn')}
             </button>
           )}
         </div>

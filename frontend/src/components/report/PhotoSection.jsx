@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import PhotoDropzone from './PhotoDropzone';
 import AiVariationPicker from './AiVariationPicker';
 
@@ -14,13 +15,15 @@ function PhotoSection({
   uploadedOriginal,
   onSelectImage,
 }) {
+  const { t } = useTranslation();
+
   return (
     <div className="photo-upload-section">
       <label className="photo-upload-title">
-        📸 Photo of Missing Person & Appearance Variations
+        {t('photoSectionTitle')}
       </label>
       <p className="photo-upload-subtitle">
-        Upload a photo from your device. You can optionally simulate and choose an updated AI variation below.
+        {t('photoSectionSubtitle')}
       </p>
 
       <PhotoDropzone

@@ -32,10 +32,46 @@ body {
   text-decoration: none;
 }
 
+.navbar-right-section {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .navbar-links {
   display: flex;
-  gap: 30px;
+  gap: 24px;
   list-style: none;
+}
+
+.language-switcher-group {
+  display: flex;
+  background-color: #12122a;
+  border: 1px solid #2a2a4a;
+  border-radius: 20px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: #aaaacc;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lang-btn:hover {
+  color: #ffffff;
+}
+
+.lang-btn.active {
+  background-color: #e74c3c;
+  color: #ffffff;
 }
 
 .navbar-links a {

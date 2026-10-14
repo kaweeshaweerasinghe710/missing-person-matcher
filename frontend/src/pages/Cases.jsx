@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { getAllMissingPersons } from '../services/api';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import CasesHeader from '../components/cases/CasesHeader';
@@ -9,6 +10,7 @@ import PosterModal from '../components/poster/PosterModal';
 import EmptyState from '../components/common/EmptyState';
 
 function Cases() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const targetCaseId = searchParams.get('id');
@@ -59,7 +61,7 @@ function Cases() {
     }
 
     setFoundModalPerson(null);
-    alert('✅ Person marked as FOUND successfully!');
+    alert(t('markFoundSuccess'));
   };
 
   const filteredCases = cases.filter(
@@ -77,12 +79,12 @@ function Cases() {
         onSearchChange={setSearch}
       />
 
-      {loading && <p className="cases-status-msg">Loading cases...</p>}
+      {loading && <p className="cases-status-msg">{t('loadingCases')}</p>}
 
       {!loading && filteredCases.length === 0 && (
         <EmptyState
-          title="No missing person reports found."
-          buttonText="Report the First Case"
+          title={t('noCases')}
+          buttonText={t('reportFirstCase')}
           onButtonClick={() => navigate('/report-missing')}
         />
       )}

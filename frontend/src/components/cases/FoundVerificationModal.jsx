@@ -1,10 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFoundVerification } from '../../hooks/useFoundVerification';
 import CameraCapture from '../common/CameraCapture';
 import LocationPicker from '../common/LocationPicker';
 import FoundPersonFormFields from '../report/FoundPersonFormFields';
 
 function FoundVerificationModal({ person, onClose, onSuccess }) {
+  const { t } = useTranslation();
   const {
     camera,
     geo,
@@ -29,11 +31,11 @@ function FoundVerificationModal({ person, onClose, onSuccess }) {
         <div className="found-modal-header">
           <span style={{ fontSize: '20px' }}>🤝</span>
           <h3 className="found-modal-title">
-            Confirm Found: <span style={{ color: '#2ecc71' }}>{person.name}</span>
+            {t('confirmFoundTitle')} <span style={{ color: '#2ecc71' }}>{person.name}</span>
           </h3>
         </div>
         <p className="found-modal-subtitle">
-          Camera opens automatically. Snap a verification photo and confirm the location where this person was spotted.
+          {t('confirmFoundSubtitle')}
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -45,9 +47,9 @@ function FoundVerificationModal({ person, onClose, onSuccess }) {
             onCapture={camera.capturePhoto}
             onRetake={camera.retakePhoto}
             onFileUpload={handleDeviceUpload}
-            title="📸 Live Camera Verification Photo"
-            subtitle="Snap a photo of the spotted person"
-            fallbackLabel="📁 Or upload photo from device instead"
+            title={t('livePhotoTitle')}
+            subtitle={t('livePhotoSubtitle')}
+            fallbackLabel={t('uploadFallback')}
           />
 
           <LocationPicker
@@ -57,7 +59,7 @@ function FoundVerificationModal({ person, onClose, onSuccess }) {
             isFetchingGps={geo.isFetching}
             gpsStatus={geo.statusMessage}
             coordinates={geo.coordinates}
-            label="📍 Spotted Location"
+            label={t('foundLocation')}
             placeholder="Location where person was spotted"
           />
 
@@ -69,7 +71,7 @@ function FoundVerificationModal({ person, onClose, onSuccess }) {
           />
 
           <button type="submit" disabled={isSubmitting} className="btn-confirm-found">
-            {isSubmitting ? 'Updating Status...' : '✓ Confirm Found & Update Record'}
+            {isSubmitting ? t('updatingStatus') : t('confirmFoundActionBtn')}
           </button>
         </form>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useReportMissingForm } from '../hooks/useReportMissingForm';
 import MissingPersonFormFields from '../components/report/MissingPersonFormFields';
 import PhotoSection from '../components/report/PhotoSection';
@@ -7,6 +8,7 @@ import SuccessView from '../components/common/SuccessView';
 import PosterModal from '../components/poster/PosterModal';
 
 function ReportMissing() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [showPoster, setShowPoster] = useState(false);
 
@@ -32,12 +34,12 @@ function ReportMissing() {
     return (
       <>
         <SuccessView
-      
-          title="Report Submitted Successfully!"
-          message="The missing person record has been published. You can now generate, print, or download an official poster."
-          actionButtonText=" Generate & Print Official Poster"
+          icon="✅"
+          title={t('missingSuccessTitle')}
+          message={t('missingSuccessMsg')}
+          actionButtonText={t('generatePosterBtn')}
           onActionClick={() => setShowPoster(true)}
-          buttonText="← Back to Missing Persons List"
+          buttonText={t('backToList')}
           onButtonClick={() => navigate('/')}
         />
         {showPoster && (
@@ -53,12 +55,12 @@ function ReportMissing() {
   return (
     <div className="form-page" style={{ maxWidth: '680px' }}>
       <button type="button" className="back-btn" onClick={() => navigate('/')}>
-        ← Back
+        {t('backBtn')}
       </button>
 
-      <h2>📢 Report Missing Person</h2>
+      <h2>{t('reportMissingTitle')}</h2>
       <p style={{ color: '#aaaacc', fontSize: '14px', marginBottom: '24px' }}>
-        Please provide accurate details to help identify and locate the missing individual.
+        {t('reportMissingSubtitle')}
       </p>
 
       <form onSubmit={handleSubmit}>
@@ -78,7 +80,7 @@ function ReportMissing() {
         />
 
         <button type="submit" className="submit-btn" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting Report...' : 'Submit Missing Person Report'}
+          {isSubmitting ? t('submittingReport') : t('submitMissingReport')}
         </button>
       </form>
     </div>

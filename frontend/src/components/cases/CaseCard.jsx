@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function CaseCard({ person, onViewDetails, onMarkFound }) {
+  const { t } = useTranslation();
   const isFound = person.status === 'FOUND';
 
   return (
@@ -24,22 +26,22 @@ function CaseCard({ person, onViewDetails, onMarkFound }) {
         <div className="case-card-info">
           <h3 className="case-card-name">{person.name}</h3>
           <p className="case-card-meta">
-            {person.age} yrs • {person.gender}
+            {person.age} {t('ageYears')} • {person.gender}
           </p>
 
           {person.lastSeenDate && (
             <p className="case-card-detail">
-               <strong>Last Seen:</strong> {person.lastSeenDate}
+              📅 <strong>{t('lastSeenDate')}:</strong> {person.lastSeenDate}
             </p>
           )}
 
           <p className="case-card-detail case-card-ellipsis">
-             <strong>Location:</strong> {person.lastSeenLocation}
+            📍 <strong>{t('lastSeenLocation')}:</strong> {person.lastSeenLocation}
           </p>
 
           {person.clothing && (
             <p className="case-card-detail-sub case-card-ellipsis">
-               <strong>Dress:</strong> {person.clothing}
+              👕 <strong>{t('clothing')}:</strong> {person.clothing}
             </p>
           )}
         </div>
@@ -50,7 +52,7 @@ function CaseCard({ person, onViewDetails, onMarkFound }) {
           onClick={() => onViewDetails(person)}
           className="case-btn-details"
         >
-          More Details
+          {t('moreDetails')}
         </button>
 
         {!isFound ? (
@@ -59,10 +61,10 @@ function CaseCard({ person, onViewDetails, onMarkFound }) {
             onClick={() => onMarkFound(person)}
             className="case-btn-found"
           >
-             Found
+            {t('foundBtn')}
           </button>
         ) : (
-          <span className="case-badge-located">Located</span>
+          <span className="case-badge-located">{t('locatedBadge')}</span>
         )}
       </div>
     </div>

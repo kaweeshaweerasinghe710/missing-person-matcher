@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function FoundPersonFormFields({
   foundDate,
@@ -8,11 +9,13 @@ function FoundPersonFormFields({
   notes,
   onNotesChange,
 }) {
+  const { t } = useTranslation();
+
   return (
     <>
       {onDateChange && (
         <div className="form-group">
-          <label> Date Spotted </label>
+          <label>{t('dateSpotted')}</label>
           <input
             name="foundDate"
             type="date"
@@ -25,24 +28,25 @@ function FoundPersonFormFields({
 
       <div className="form-group" style={{ marginBottom: '14px' }}>
         <label style={{ display: 'block', fontSize: '13px', marginBottom: '4px' }}>
-          Finder  Contact *
+          {t('finderContact')}
         </label>
         <input
           value={reporterContact}
           onChange={onContactChange}
           required
-          placeholder=" 077XXXXXXX "
+          placeholder="077XXXXXXX"
         />
       </div>
 
       <div className="form-group" style={{ marginBottom: '18px' }}>
         <label style={{ display: 'block', fontSize: '13px', marginBottom: '4px' }}>
-          Condition & Clothes Notes
+          {t('conditionNotes')}
         </label>
         <textarea
           value={notes}
           onChange={onNotesChange}
           rows={3}
+          placeholder={t('conditionNotesPlaceholder')}
         />
       </div>
     </>

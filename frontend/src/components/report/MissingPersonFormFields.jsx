@@ -1,45 +1,48 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function MissingPersonFormFields({ form, onChange }) {
+  const { t } = useTranslation();
+
   return (
     <>
       <div className="form-group">
-        <label>Full Name </label>
+        <label>{t('fullName')}</label>
         <input
           name="name"
           value={form.name}
           onChange={onChange}
           required
-          placeholder=" Kamal Perera"
+          placeholder="Kamal Perera"
         />
       </div>
 
       <div style={{ display: 'flex', gap: '16px' }}>
         <div className="form-group" style={{ flex: 1 }}>
-          <label>Age </label>
+          <label>{t('age')}</label>
           <input
             name="age"
             type="number"
             value={form.age}
             onChange={onChange}
             required
-            placeholder=" 45"
+            placeholder="45"
           />
         </div>
         <div className="form-group" style={{ flex: 1 }}>
-          <label>Gender </label>
+          <label>{t('gender')} *</label>
           <select name="gender" value={form.gender} onChange={onChange} required>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
+            <option value="">{t('selectGender')}</option>
+            <option value="Male">{t('male')}</option>
+            <option value="Female">{t('female')}</option>
+            <option value="Other">{t('other')}</option>
           </select>
         </div>
       </div>
 
       <div style={{ display: 'flex', gap: '16px' }}>
         <div className="form-group" style={{ flex: 1 }}>
-          <label>Last Seen Date </label>
+          <label>{t('lastSeenDate')} *</label>
           <input
             name="lastSeenDate"
             type="date"
@@ -49,7 +52,7 @@ function MissingPersonFormFields({ form, onChange }) {
           />
         </div>
         <div className="form-group" style={{ flex: 1 }}>
-          <label>Last Seen Location </label>
+          <label>{t('lastSeenLocation')} *</label>
           <input
             name="lastSeenLocation"
             value={form.lastSeenLocation}
@@ -61,18 +64,18 @@ function MissingPersonFormFields({ form, onChange }) {
       </div>
 
       <div className="form-group">
-        <label>Clothing </label>
+        <label>{t('clothingLabel')}</label>
         <input
           name="clothing"
           value={form.clothing}
           onChange={onChange}
           required
-          placeholder=" Blue collared shirt, black trousers, brown shoes"
+          placeholder="Blue shirt, black trousers"
         />
       </div>
 
       <div className="form-group">
-        <label>Contact Number</label>
+        <label>{t('contactNumber')}</label>
         <input
           name="contactNumber"
           value={form.contactNumber}
@@ -83,13 +86,13 @@ function MissingPersonFormFields({ form, onChange }) {
       </div>
 
       <div className="form-group">
-        <label>Additional Marks</label>
+        <label>{t('addDescription')}</label>
         <textarea
           name="description"
           value={form.description}
           onChange={onChange}
           rows={3}
-          placeholder="Height, skin tone, scars, tattoos, medical conditions, etc."
+          placeholder="Height, skin tone, scars, tattoos, etc."
         />
       </div>
     </>

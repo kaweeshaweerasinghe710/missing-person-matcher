@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useReportFoundForm } from '../hooks/useReportFoundForm';
 import CameraCapture from '../components/common/CameraCapture';
 import LocationPicker from '../components/common/LocationPicker';
@@ -7,6 +8,7 @@ import FoundPersonFormFields from '../components/report/FoundPersonFormFields';
 import SuccessView from '../components/common/SuccessView';
 
 function ReportFound() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const {
     form,
@@ -22,9 +24,10 @@ function ReportFound() {
   if (isSuccess) {
     return (
       <SuccessView
-        title="Found Person Report Submitted!"
-        message="The record has been saved. Our system will scan for matching missing person reports."
-        buttonText="← Back to Cases Directory"
+        icon="🤝"
+        title={t('foundSuccessTitle')}
+        message={t('foundSuccessMsg')}
+        buttonText={t('backToCases')}
         onButtonClick={() => navigate('/')}
       />
     );
@@ -33,12 +36,19 @@ function ReportFound() {
   return (
     <div className="form-page" style={{ maxWidth: '680px' }}>
       <button type="button" className="back-btn" onClick={() => navigate('/')}>
-        ← Back
+        {t('backBtn')}
       </button>
 
-      <h2> Report Found </h2>
+      <h2>{t('reportFoundTitle')}</h2>
 
-     
+      <div className="unidentified-banner">
+        <div className="unidentified-banner-title">
+          <span>ℹ️</span> {t('unidentifiedTitle')}
+        </div>
+        <p className="unidentified-banner-text">
+          {t('unidentifiedDesc')}
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit}>
         <CameraCapture
@@ -49,9 +59,9 @@ function ReportFound() {
           onCapture={camera.capturePhoto}
           onRetake={camera.retakePhoto}
           onFileUpload={handleDeviceUpload}
-          title=" Photo of Found Individual "
-          subtitle="Live camera opens automatically. Align the person and click 'Capture Photo'."
-          fallbackLabel=" Or upload photo from device gallery instead"
+          title={t('livePhotoTitle')}
+          subtitle={t('livePhotoSubtitle')}
+          fallbackLabel={t('uploadFallback')}
         />
 
         <LocationPicker
@@ -61,8 +71,9 @@ function ReportFound() {
           isFetchingGps={geo.isFetching}
           gpsStatus={geo.statusMessage}
           coordinates={geo.coordinates}
-          label=" Found Location"
+          label={t('foundLocation')}
           required
+          placeholder="Colombo, Kandy..."
         />
 
         <FoundPersonFormFields
@@ -80,7 +91,7 @@ function ReportFound() {
           disabled={isSubmitting}
           style={{ backgroundColor: '#27ae60' }}
         >
-          {isSubmitting ? 'Submitting Found Report...' : ' Submit Found Person Report'}
+          {isSubmitting ? t('submittingFoundReport') : t('submitFoundReport')}
         </button>
       </form>
     </div>
