@@ -8,7 +8,7 @@ function Navbar() {
       <ul className="navbar-links">
         <li><Link to="/">Missing Persons</Link></li>
         <li><Link to="/report-missing" style={{ color: '#e74c3c', fontWeight: 'bold' }}>+ Report Missing</Link></li>
-        <li><Link to="/report-found" style={{ color: '#2ecc71', fontWeight: 'bold' }}>👁️ Report Found</Link></li>
+        <li><Link to="/report-found" style={{ color: '#2ecc71', fontWeight: 'bold' }}> Report Found</Link></li>
       </ul>
     </nav>
   );

@@ -39,7 +39,6 @@ function Home() {
         <div className="card">
           <div className="card-header green">REPORT FOUND PERSON</div>
           <div className="card-body">
-            <div className="card-icon">🤝</div>
             <p>Submit details of a person found or located</p>
             <button className="card-btn green"
               onClick={() => navigate('/report-found')}>
@@ -51,7 +50,6 @@ function Home() {
         <div className="card">
           <div className="card-header blue">VIEW CASES</div>
           <div className="card-body">
-            <div className="card-icon">👁️</div>
             <p>Browse, search, and manage all missing and found person cases</p>
             <button className="card-btn blue"
               onClick={() => navigate('/cases')}>
@@ -62,28 +60,24 @@ function Home() {
       </div>
       <div className="stats-bar">
         <div className="stat-item">
-          <span className="stat-icon">🔴</span>
           <div>
             <div className="stat-label">Current Cases</div>
             <div className="stat-value">{stats.missing}</div>
           </div>
         </div>
         <div className="stat-item">
-          <span className="stat-icon">✅</span>
           <div>
             <div className="stat-label">Persons Located</div>
             <div className="stat-value">{stats.found}</div>
           </div>
         </div>
         <div className="stat-item">
-          <span className="stat-icon">📋</span>
           <div>
             <div className="stat-label">Total Reports</div>
             <div className="stat-value">{stats.missing + stats.found}</div>
           </div>
         </div>
         <div className="stat-item">
-          <span className="stat-icon">🤖</span>
           <div>
             <div className="stat-label">AI Matches</div>
             <div className="stat-value">0</div>
